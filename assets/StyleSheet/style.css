@@ -1,0 +1,258 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+
+}
+.main-list{
+    margin-left: 40px;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 12px;
+}
+.logo{
+    width: 100px;
+}
+.search-div>img{
+    width: 150px;
+}
+.search-input{
+    width: 400px;
+}
+.search-icon{
+    width: 50px;
+    background-color: orangered;
+    border-radius: 0px 5px 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: white;
+}
+.search-input{
+    background-color: rgb(233, 225, 225);
+    border: none;
+    font-size: 20px;
+    margin-left: 50px;
+    padding: 10px;
+}
+
+.search-input{
+    outline: none;
+}
+.cart{
+    font-size: 25px;
+    margin-left: 5px;
+    color: black;
+}
+.sliderImage{
+    width: 100% !important;
+    height: 400px !important;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none !important;
+}
+.buttonDiv{
+    font-size: 15px;
+}
+#errorDiv{
+    color: red;
+}
+.Validiation:focus{
+    border-bottom: 5px solid red !important;
+    box-shadow: none !important;
+    border-top: 0 !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+}
+.Validiation::placeholder{
+    color: red !important;
+}
+.white{
+    color: white;
+}
+.myInput{
+    font-size: 12px;
+    transition: transform 0.3s ease;
+    /* border-bottom: 2px solid black; */
+    border-top: 0 !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+}
+.myInput:focus{
+    box-shadow: none !important;
+    border-bottom: 5px solid black !important;
+    border-top: 0 !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+}
+.mainSignUpDiv{
+    font-size: 12px;
+    background-color: white !important;
+    border-radius: 10px;
+    box-shadow: 0 0 20px;
+}
+.CLASS{
+    text-align: center !important;
+}
+.dni{
+    display: none !important;
+}
+.nona{
+    display: none;
+}
+.taskList > li{
+    list-style-type: none;
+    margin: 0;
+    margin-top: 20px;
+    border: 2px solid black;
+    padding: 10px !important;
+    border-radius: 5px;
+    box-shadow: 0px 10px 1px #ddd, 0 10px 20px #ccc;
+}
+.taskList{
+    margin: 0%;
+    padding: 0;
+}
+.headerTodo{
+    background-color: rgb(211, 209, 209) !important;
+    margin: 10px;
+    box-shadow: 0px 10px 1px #ddd, 0 10px 20px #ccc;
+    border-radius: 5px !important;
+    border-bottom: 5px solid black !important;
+}
+.profileImage{
+    border: 5px solid black;
+    width: 200px;
+    height: 200px;
+   border-radius: 100px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 0 auto;
+   position: relative;
+   overflow-y: hidden; 
+}
+.camera{
+    /* position: absolute;
+    top: 0;
+    right: 0;
+    /* font-size: 30px; */ 
+    font-size: 40px !important;
+    color: #21618C;
+    cursor: pointer;
+}
+.myMainDiv{
+    width: 100%;
+    text-align: center;
+    align-items: center;
+    margin-top: 100px;
+    padding: 20px;
+     box-shadow: 0 0 20px;
+}
+.mybutton{
+    display: block !important;
+    margin: 10px auto;
+}
+body{
+    background-color: #F0F8FF;
+}
+#image{
+    width: 100% !important;
+}
+#doit{
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.blak{
+ text-align: center !important;
+ 
+}
+#card{
+    /* border: 5px solid black; */
+    margin-top: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px 10px;
+    width: 300px;
+}
+#header{
+    text-align: center;
+    margin-top: 10px;
+}
+#brand{
+    width: 150px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px;
+}
+#brand>option{
+    background-color: white;
+    color: black;
+    padding: 10px !important;
+    margin: 10px !important;
+}
+
+#model{
+    width: 150px;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px;
+}
+#model>option{
+    background-color: white;
+    color: black;
+    padding: 10px !important;
+    margin: 10px !important;
+}
+
+#btn{
+    margin-top: 20px !important;
+    box-shadow: 10px -20px !important;
+    display: block;
+    margin: 0 auto; 
+}
+#name{
+    /* color: white !important; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width : 600px){
+    .main-list{
+        text-align: left;
+        margin-left: 10px !important;
+    }
+    .search-input{
+        width: 80%;
+        margin-left: 0px;
+        display: block !important;
+    }
+    .cart{
+        display: none;
+    }
+    .search-div>img{
+        margin-bottom: 20px;
+    }
+    .sliderImage{
+        height: 200px !important;
+    }
+}

@@ -1,0 +1,141 @@
+.search-input{
+    width: 400px;
+}
+.search-icon{
+    width: 50px;
+    background-color: orangered;
+    border-radius: 0px 5px 5px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: white;
+}
+.search-input{
+    background-color: rgb(233, 225, 225);
+    border: none;
+    font-size: 20px;
+    margin-left: 50px;
+    padding: 10px;
+}
+
+.search-input{
+    outline: none;
+}
+.cart{
+    font-size: 25px;
+    margin-left: 5px;
+    color: black;
+}
+.sliderImage{
+    width: 100% !important;
+    height: 400px !important;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none !important;
+}
+.buttonDiv{
+    font-size: 15px;
+}
+#errorDiv{
+    color: red;
+}
+.Validiation:focus{
+    border-bottom: 5px solid red !important;
+    box-shadow: none !important;
+    border-top: 0 !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+}
+.Validiation::placeholder{
+    color: red !important;
+}
+.white{
+    color: white;
+}
+.myInput{
+    font-size: 12px;
+    transition: transform 0.3s ease;
+    /* border-bottom: 2px solid black; */
+    border-top: 0 !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+}
+.myInput:focus{
+    box-shadow: none !important;
+    border-bottom: 5px solid black !important;
+    border-top: 0 !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+}
+.model{
+    width: 200px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px;
+}
+.model>option{
+    background-color: white;
+    color: black;
+}
+.Validiation:focus{
+    border-bottom: 5px solid red !important;
+    box-shadow: none !important;
+    border-top: 0 !important;
+    border-left: 0px !important;
+    border-right: 0px !important;
+}
+.Validiation::placeholder{
+    color: red !important;
+}
+
+
+
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+  
+  /* Style the buttons inside the tab */
+  .tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    background-color: #ccc;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+  .white{
+      color: white !important;
+  }
+  p{
+      margin-bottom: 0;
+  }
