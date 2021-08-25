@@ -7,8 +7,9 @@
 .header{
     position: fixed !important;
     top: 0px;
-    width: 93%;
-    height: 100px !important;
+
+    width: 94%;
+    /* height: 100px !important; */
     z-index: 3;
 }
 footer{

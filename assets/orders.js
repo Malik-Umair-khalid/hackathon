@@ -6,21 +6,25 @@ firebase.auth().onAuthStateChanged((user) => {
         document.getElementById("logout").style.display = "block"
         firebase.database().ref(`pendings`).on("child_added", (orders) => {
             let restId = orders.key
-            console.log(restId)
-                firebase.database().ref(`pendings/${restId}`).on("child_added", (orders) => {
+                firebase.database().ref(`pendings/${restId}/${user.uid}`).on("child_added", (orders) => {
+                    console.log(orders.val())
                     let dishId = orders.val().dishId;
                     let quantity = orders.val().quantity;
                     let restaurantId = orders.val().restaurantId;
                     let status = orders.val().status;
-                    let userId = orders.val().userId;
+                    let userId = orders.val().userInfo;
+                    console.log(userId)
+
+                if(user.uid == userId){        
                     if(status == "pending"){
                     firebase.database().ref(`users/restaurants/${restaurantId}`).on("value", (restDetails) => {
                         restDetails = restDetails.val()
-                        firebase.database().ref(`users/dishes/${restaurantId}`).on("child_added", (dishDetails => {
+                        firebase.database().ref(`users/dishes/${restaurantId}/${dishId}`).on("value", (dishDetails => {
                             dishDetails = dishDetails.val()
+                            console.log(dishDetails)
                             document.getElementById("pend").innerHTML += `
                             <div class = "border border-1 p-4 mb-2 rounded shadow-lg">
-                            <h1>Customer Details </h1>
+                            <h1>Rastaurants Details </h1>
                             <p>Restaurant Name: ${restDetails.name}</p>
                             <p>Restaurant Email: ${restDetails.email}</p>
                             <p>Restaurant Address: ${restDetails.country, restDetails.city}</p>
@@ -43,7 +47,7 @@ firebase.auth().onAuthStateChanged((user) => {
                             dishDetails = dishDetails.val()
                             document.getElementById("accepts").innerHTML += `
                             <div class = "border border-1 p-4 mb-2 rounded shadow-lg">
-                            <h1>Customer Details </h1>
+                            <h1>Rastaurnts Details </h1>
                             <p>Restaurant Name: ${restDetails.name}</p>
                             <p>Restaurant Email: ${restDetails.email}</p>
                             <p>Restaurant Address: ${restDetails.country, restDetails.city}</p>
@@ -67,7 +71,7 @@ firebase.auth().onAuthStateChanged((user) => {
                             dishDetails = dishDetails.val()
                             document.getElementById("dilivers").innerHTML += `
                             <div class = "border border-1 p-4 mb-2 rounded shadow-lg">
-                            <h1>Customer Details </h1>
+                            <h1>Rastaurants Details </h1>
                             <p>Restaurant Name: ${restDetails.name}</p>
                             <p>Restaurant Email: ${restDetails.email}</p>
                             <p>Restaurant Address: ${restDetails.country, restDetails.city}</p>
@@ -84,6 +88,7 @@ firebase.auth().onAuthStateChanged((user) => {
                     })
 
                 }
+            }
                 })
         })
     }

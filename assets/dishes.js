@@ -61,7 +61,7 @@ function buy (dish, userkey){
     console.log(userkey)
     firebase.auth().onAuthStateChanged((user) => {
         let userId = user.uid
-        firebase.database().ref(`pendings/${userkey}`)
+        firebase.database().ref(`pendings/${userkey}/${user.uid}`)
         .push({
             dishId: dish,
             userInfo: userId,

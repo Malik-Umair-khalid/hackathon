@@ -55,7 +55,7 @@ let uploadImage = (file) => {
 }
 
 
-function  openCity(evt, cityName) {
+function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -69,7 +69,7 @@ function  openCity(evt, cityName) {
     evt.currentTarget.className += " active";
 }
 
-let saveProduct = async  () => {
+let saveProduct = async () => {
     let foodName = document.getElementById("foodName")
     let foodPrice = document.getElementById("foodPrice")
     let foodCatagory = document.getElementById("foodCatagory")
@@ -92,7 +92,7 @@ let saveProduct = async  () => {
         swal("Noop!", "Please Add The Image!", "warning");
     }
     else {
-        let food = await uploadImage(foodImage.files[0])    
+        let food = await uploadImage(foodImage.files[0])
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 firebase.database().ref(`users/dishes/${user.uid}`).push({
@@ -102,31 +102,31 @@ let saveProduct = async  () => {
                     foodImagE: food,
                     deleveryType: deleveryType.value,
                 })
+                foodName.value = ""
+                foodPrice.value = ""
+                foodImage.files.length = 0
+                console.log(food)
+                document.getElementById("close").click()
             }
-            foodName = ""
-            foodPrice = ""
-            foodImage.files.length = 0
-            console.log(food)
-            document.getElementById("close").click()
         })
     }
 
 }
 
 firebase.auth().onAuthStateChanged((user) => {
-    firebase.database().ref(`pendings/${user.uid}`).on("child_added" , (orders) =>{
-        
+    firebase.database().ref(`pendings/${user.uid}`).on("child_added", (orders) => {
+
         let status = orders
         orders = orders.val()
         let cusId = orders.userInfo;
         let prodId = orders.dishId;
-        console.log(orders)
-        if(orders.status == "pending"){
-        firebase.database().ref(`users/customers/${cusId}`).on("value" , (userInfo) =>{
-        let cusDetails = userInfo.val()
-        firebase.database().ref(`users/dishes/${user.uid}/${prodId}`).on("value" , (pendings) =>{
-        let orderDetails = pendings.val()
-        document.getElementById("pend").innerHTML += `
+        // console.log(orders)
+        if (orders.status == "pending") {
+            firebase.database().ref(`users/customers/${cusId}`).on("value", (userInfo) => {
+                let cusDetails = userInfo.val()
+                firebase.database().ref(`users/dishes/${user.uid}/${prodId}`).on("value", (pendings) => {
+                    let orderDetails = pendings.val()
+                    document.getElementById("pend").innerHTML += `
         <div class = "border border-1 p-4 mb-2 rounded shadow-lg">
         <h1>Customer Details </h1>
         <p>Customer Name: ${cusDetails.name}</p>
@@ -146,15 +146,15 @@ firebase.auth().onAuthStateChanged((user) => {
         </div>
         </div> 
         `
-        })
-        })
-    }
-    else if(orders.status == "Accepted"){
-        firebase.database().ref(`users/customers/${cusId}`).on("value" , (userInfo) =>{
-            let cusDetails = userInfo.val()
-            firebase.database().ref(`users/dishes/${user.uid}/${prodId}`).on("value" , (pendings) =>{
-            let orderDetails = pendings.val()
-            document.getElementById("accepts").innerHTML += `
+                })
+            })
+        }
+        else if (orders.status == "Accepted") {
+            firebase.database().ref(`users/customers/${cusId}`).on("value", (userInfo) => {
+                let cusDetails = userInfo.val()
+                firebase.database().ref(`users/dishes/${user.uid}/${prodId}`).on("value", (pendings) => {
+                    let orderDetails = pendings.val()
+                    document.getElementById("accepts").innerHTML += `
             <div class = "border border-1 p-4 mb-2 rounded shadow-lg">
             <h1>Customer Details </h1>
             <p>Customer Name: ${cusDetails.name}</p>
@@ -173,15 +173,15 @@ firebase.auth().onAuthStateChanged((user) => {
             </div>
             </div> 
             `
+                })
             })
-            })
-    }
-    else if(orders.status == "Delivered"){
-        firebase.database().ref(`users/customers/${cusId}`).on("value" , (userInfo) =>{
-            let cusDetails = userInfo.val()
-            firebase.database().ref(`users/dishes/${user.uid}/${prodId}`).on("value" , (pendings) =>{
-            let orderDetails = pendings.val()
-            document.getElementById("dilivers").innerHTML += `
+        }
+        else if (orders.status == "Delivered") {
+            firebase.database().ref(`users/customers/${cusId}`).on("value", (userInfo) => {
+                let cusDetails = userInfo.val()
+                firebase.database().ref(`users/dishes/${user.uid}/${prodId}`).on("value", (pendings) => {
+                    let orderDetails = pendings.val()
+                    document.getElementById("dilivers").innerHTML += `
             <div class = "border border-1 p-4 mb-2 rounded shadow-lg">
             <h1>Customer Details </h1>
             <p>Customer Name: ${cusDetails.name}</p>
@@ -200,30 +200,99 @@ firebase.auth().onAuthStateChanged((user) => {
             </div>
             </div> 
             `
+                })
             })
-            })
-    }
+        }
     })
 })
 
-let accept = (btn, oid,uid) =>{
-     btn.parentNode.remove()
-     firebase.database().ref(`pendings/${uid}/${oid}`).update({
-         status: "Accepted"
-     })
-     window.location.reload()    
+let accept = (btn, oid, uid) => {
+    btn.parentNode.remove()
+    firebase.database().ref(`pendings/${uid}/${oid}`).update({
+        status: "Accepted"
+    })
+    window.location.reload()
 }
-let reject = (btn,oid,uid) =>{
+let reject = (btn, oid, uid) => {
     btn.parentNode.remove()
     firebase.database().ref(`pendings/${uid}/${oid}`).update({
         status: "Rejected"
     })
     window.location.reload()
 }
-let deliver = (btn,oid,uid) =>{
+let deliver = (btn, oid, uid) => {
     btn.parentNode.parentNode.remove()
     firebase.database().ref(`pendings/${uid}/${oid}`).update({
         status: "Delivered"
     })
     window.location.reload()
 }
+let dishes = () => {
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            console.log(user)
+            firebase.database().ref(`users/dishes/${user.uid}`).on("child_added", (res) => {
+                let foodDetails = res.val();
+                document.getElementById("dishes").innerHTML +=
+                    `
+                <div class="card" id="card">
+                </hr>
+                <img class="card-img-top" src="${foodDetails.foodImagE}" alt="" id="image">
+                </hr>
+                <div id = '' class="card-body blak">
+                    <h4 class="card-title fst-italic fw-bold" id="name">${foodDetails.foodName}</h4>
+                    <p class="card-text" id="price">Catagory:  ${foodDetails.foodCatagory}</p>
+                    <p class="card-text" id="price"> Price:  ${foodDetails.foodPrice}</p>
+                    <p class="card-text" id="price">Delevery Type:  ${foodDetails.deleveryType}</p>
+                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#modelId1" onclick = "edit('${res.key}','${user.uid}')" class = "btn btn-primary">Edit</button>
+                </div>
+                </div>
+                `
+            })
+
+        }
+    })
+}
+dishes()
+let edit = (dsihId, RestId) => {
+    let foodNameE = document.getElementById("foodNameE")
+    let foodPriceE = document.getElementById("foodPriceE")
+    let foodCatagoryE = document.getElementById("foodCatagoryE")
+    let DeleveryTypeE = document.getElementById("DeleveryTypeE")
+    let foodImageE = document.getElementById("foodImageE")
+    let jugar = document.getElementById("jugar")
+    jugar.value = dsihId
+    console.log(jugar)
+    console.log(RestId)
+
+
+    firebase.database().ref(`users/dishes/${RestId}/${dsihId}`).on("value", (dishData) => {
+        foodNameE.value = dishData.val().foodName
+        foodPriceE.value = dishData.val().foodPrice
+        foodCatagoryE.value = dishData.val().foodCatagory
+        DeleveryTypeE.value = dishData.val().deleveryType
+    })
+}
+
+let update = async () => {
+    let foodNameE = document.getElementById("foodNameE")
+    let foodPriceE = document.getElementById("foodPriceE")
+    let foodCatagoryE = document.getElementById("foodCatagoryE")
+    let DeleveryTypeE = document.getElementById("DeleveryTypeE")
+    let dishID = document.getElementById("jugar")
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            firebase.database().ref(`users/dishes/${user.uid}/${dishID.value}`).update({
+                foodName: foodNameE.value,
+                foodPrice: foodPriceE.value,
+                foodCatagory: foodCatagoryE.value,
+                deleveryType: DeleveryTypeE.value,
+            })
+            document.getElementById("close1").click()
+        }
+    }
+
+    )
+}
+
+

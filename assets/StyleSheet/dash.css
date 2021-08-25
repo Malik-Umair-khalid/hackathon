@@ -22,7 +22,7 @@
     position: fixed !important;
     top: 0px;
     width: 93%;
-    height: 100px !important;
+    /* height: 100px !important; */
     z-index: 3;
 }
 footer{
@@ -157,6 +157,26 @@ a{
   .white{
       color: white !important;
   }
-  p{
+  /* p{
       margin-bottom: 0;
-  }
+  } */
+  #image{
+    max-width: 400px !important;
+    max-height: 300px !important;
+}
+#dishes{
+    display: flex !important;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.blak{
+ text-align: center !important;
+ 
+}
+#card{
+    /* border: 5px solid black; */
+    margin-top: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px 10px;
+    width: 300px;
+}
