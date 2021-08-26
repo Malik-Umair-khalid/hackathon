@@ -30,7 +30,7 @@ console.log(uid)
 firebase.database().ref(`users/dishes/${uid}`).on("child_added" , (res) =>{
     // alert("hellp")
     let foodDetails = res.val();
-    
+    console.log(res.key)
     document.getElementById("doit").innerHTML +=
     `
     <div class="card" id="card">
@@ -61,7 +61,7 @@ function buy (dish, userkey){
     console.log(userkey)
     firebase.auth().onAuthStateChanged((user) => {
         let userId = user.uid
-        firebase.database().ref(`pendings/${userkey}/${user.uid}`)
+        firebase.database().ref(`pendings/${user.uid}`)
         .push({
             dishId: dish,
             userInfo: userId,

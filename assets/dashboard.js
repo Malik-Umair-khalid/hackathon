@@ -114,85 +114,99 @@ let saveProduct = async () => {
 }
 
 firebase.auth().onAuthStateChanged((user) => {
-    firebase.database().ref(`pendings/${user.uid}`).on("child_added", (orders) => {
-
-        let status = orders
-        orders = orders.val()
-        let cusId = orders.userInfo;
-        let prodId = orders.dishId;
-        // console.log(orders)
+    firebase.database().ref(`pendings`).on("child_added", (userKey) => {
+        let userId = userKey.key
+        console.log(user.uid)
+        firebase.database().ref(`pendings/${userId}`).on("child_added" , (orders) =>{
+            let orderKey = orders.key
+            let status = orders.val().status
+            orders = orders.val()
+            let cusId = orders.userInfo;
+            let prodId = orders.dishId;
+            let quantity = orders.quantity;
         if (orders.status == "pending") {
+            
             firebase.database().ref(`users/customers/${cusId}`).on("value", (userInfo) => {
                 let cusDetails = userInfo.val()
                 firebase.database().ref(`users/dishes/${user.uid}/${prodId}`).on("value", (pendings) => {
                     let orderDetails = pendings.val()
+                    if(orderDetails){
                     document.getElementById("pend").innerHTML += `
         <div class = "border border-1 p-4 mb-2 rounded shadow-lg">
         <h1>Customer Details </h1>
         <p>Customer Name: ${cusDetails.name}</p>
         <p>Customer Email: ${cusDetails.email}</p>
         <p>Customer Contact: ${cusDetails.contact}</p>
-        <p>Customer Address: ${cusDetails.country, cusDetails.city}</p>
+        <p>Customer Address: ${cusDetails.city +  cusDetails.country }</p>
         <div>
             <h1>Order Details</h1>
           <p>Food Name: ${orderDetails.foodName}</p>
           <p>Food Price: ${orderDetails.foodPrice}</p>
           <p>Food Cataogry: ${orderDetails.foodCatagory}</p>
+          <p class = "fw-bold">Food Bill: ${orderDetails.foodPrice * quantity}</p>
         </div>
         <div>
         <div id="statusDiv">
-        <button onclick= "accept(this, '${status.key}','${user.uid}')" class=" m-4 btn btn-outline-success">Accept</button>
-        <button onclick="reject(this, '${status.key}','${user.uid}')" class=" m-4 btn btn-outline-danger">Reject</button>
+        <button onclick= "accept(this,'${userId}','${orderKey}')" class=" m-4 btn btn-outline-success">Accept</button>
+        <button onclick="reject(this,'${userId}','${orderKey}')" class=" m-4 btn btn-outline-danger">Reject</button>
         </div>
         </div> 
         `
+    }
                 })
             })
         }
         else if (orders.status == "Accepted") {
+            document.getElementById("accepts").innerHTML = ""
             firebase.database().ref(`users/customers/${cusId}`).on("value", (userInfo) => {
                 let cusDetails = userInfo.val()
                 firebase.database().ref(`users/dishes/${user.uid}/${prodId}`).on("value", (pendings) => {
                     let orderDetails = pendings.val()
+                    if(orderDetails){
                     document.getElementById("accepts").innerHTML += `
             <div class = "border border-1 p-4 mb-2 rounded shadow-lg">
             <h1>Customer Details </h1>
             <p>Customer Name: ${cusDetails.name}</p>
             <p>Customer Email: ${cusDetails.email}</p>
             <p>Customer Contact: ${cusDetails.contact}</p>
-            <p>Customer Address: ${cusDetails.country, cusDetails.city}</p>
+            <p>Customer Address: ${cusDetails.city +  cusDetails.country }</p>
             <div>
                 <h1>Order Details</h1>
               <p>Food Name: ${orderDetails.foodName}</p>
               <p>Food Price: ${orderDetails.foodPrice}</p>
               <p>Food Cataogry: ${orderDetails.foodCatagory}</p>
+              <p class = "fw-bold">Food Bill: ${orderDetails.foodPrice * quantity}</p>
             </div>
             <div>
             <div id="statusDiv">
-            <button onclick="deliver(this, '${status.key}','${user.uid}')" class="btn btn-outline-success">Diliver</button>
+            <button onclick="deliver(this,'${userId}','${orderKey}')" class="btn btn-outline-success">Diliver</button>
             </div>
             </div> 
             `
+        }
                 })
             })
         }
         else if (orders.status == "Delivered") {
+            document.getElementById("dilivers").innerHTML = ""
             firebase.database().ref(`users/customers/${cusId}`).on("value", (userInfo) => {
                 let cusDetails = userInfo.val()
                 firebase.database().ref(`users/dishes/${user.uid}/${prodId}`).on("value", (pendings) => {
                     let orderDetails = pendings.val()
+                    if(orderDetails){
                     document.getElementById("dilivers").innerHTML += `
             <div class = "border border-1 p-4 mb-2 rounded shadow-lg">
             <h1>Customer Details </h1>
             <p>Customer Name: ${cusDetails.name}</p>
             <p>Customer Email: ${cusDetails.email}</p>
             <p>Customer Contact: ${cusDetails.contact}</p>
-            <p>Customer Address: ${cusDetails.country, cusDetails.city}</p>
+            <p>Customer Address: ${cusDetails.city +  cusDetails.country }</p>
             <div>
                 <h1>Order Details</h1>
               <p>Food Name: ${orderDetails.foodName}</p>
               <p>Food Price: ${orderDetails.foodPrice}</p>
               <p>Food Cataogry: ${orderDetails.foodCatagory}</p>
+              <p class = "fw-bold">Food Bill: ${orderDetails.foodPrice * quantity}</p>
             </div>
             <div>
             <div id="statusDiv">
@@ -200,27 +214,29 @@ firebase.auth().onAuthStateChanged((user) => {
             </div>
             </div> 
             `
+        }
                 })
             })
         }
     })
+    })
 })
 
-let accept = (btn, oid, uid) => {
+let accept = (btn, uid, oid) => {
     btn.parentNode.remove()
     firebase.database().ref(`pendings/${uid}/${oid}`).update({
         status: "Accepted"
     })
     window.location.reload()
 }
-let reject = (btn, oid, uid) => {
+let reject = (btn, uid, oid) => {
     btn.parentNode.remove()
     firebase.database().ref(`pendings/${uid}/${oid}`).update({
         status: "Rejected"
     })
     window.location.reload()
 }
-let deliver = (btn, oid, uid) => {
+let deliver = (btn, uid, oid) => {
     btn.parentNode.parentNode.remove()
     firebase.database().ref(`pendings/${uid}/${oid}`).update({
         status: "Delivered"

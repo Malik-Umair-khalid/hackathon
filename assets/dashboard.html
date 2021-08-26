@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container-fluid">
     <nav class="header navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -43,8 +43,8 @@
         </div>
       </div>
     </nav>
-
-
+  </div>
+  <div class="container">
     <h1 class="margin mt-5">Rustuarant</h1>
     <div class="tab mt-2">
       <button id="pendBtn" class="tablinks" onclick="openCity(event, 'London')">Pending</button>
@@ -58,27 +58,26 @@
     <div id="London" class="tabcontent p-3">
       <h3>Panding Orders</h3>
       <div id="pend" class="p-3">
-        No Pending Dishes
       </div>
     </div>
 
     <div id="Paris" class="tabcontent">
       <h3>Accepted Orders</h3>
       <div id="accepts" class="p-3">
-
+        You Dont Have Any Accepted Orders
       </div>
     </div>
 
     <div id="Tokyo" class="tabcontent">
       <h3>Dilivered Orders</h3>
       <div id="dilivers" class="p-3">
-
+        You Dont Have Any Accepted Orders
       </div>
     </div>
     <div id="karachi" class="tabcontent">
       <h3>Your Dishes</h3>
       <div id="dishes" class="p-3">
-
+        You Dont Have Any Accepted Orders
       </div>
     </div>
   </div>
@@ -122,11 +121,12 @@
       </div>
     </div>
   </div>
-  <footer>
+  <div class="container-fluid">  
+    <footer>
     <p>Countryies:pakistan, China and Americs</p>
     <p class=""><i class="fas fa-copyright"></i>Malik Umair Khalid</p>
   </footer>
-
+</div>
 
 <!-- Button trigger modal -->
 
