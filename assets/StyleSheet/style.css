@@ -4,31 +4,6 @@
     font-family: 'Poppins', sans-serif;
 
 }
-<<<<<<< HEAD
-.header{
-    position: fixed !important;
-    top: 0px;
-
-    width: 94%;
-    /* height: 100px !important; */
-    z-index: 3;
-}
-footer{
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    color:  white;
-    margin-bottom: 0px;
-    margin-top: 50px !important;
-    width: 100%;
-    height: 50px !important;
-    background-color: #21618C;
-}
-.margin{
-    margin-top: 100px !important;
-}
-=======
->>>>>>> parent of 6cb12c8... Updated Header and Footer
 .main-list{
     margin-left: 40px;
     text-transform: uppercase;
