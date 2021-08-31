@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Restaurant Dashboard</title>
+  <title>Title</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,6 +14,7 @@
 </head>
 
 <body>
+<<<<<<< HEAD
   <div class="container-fluid">
     <nav class="header navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -53,8 +54,39 @@
       <button id="delevBtn" class="tablinks" onclick="openCity(event, 'karachi')">Your Dishes</button>
       <button type="button" class="btn btn-dark bg-dark float-end" data-bs-toggle="modal" data-bs-target="#modelId">Add
         Product</button>
+=======
+  <div  class=" container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <h1>Food</h1>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" id="headerSignBtn" href="UserSign.html">Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="headerLoginBtn" href="Login.html">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="logout()" id="logout" style="display: none; cursor: pointer;">Logout</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-dark" type="submit">Search</button>
+        </form>
+      </div>
+>>>>>>> parent of 6cb12c8... Updated Header and Footer
     </div>
+  </nav>
 
+<<<<<<< HEAD
     <div id="London" class="tabcontent p-3">
       <h3>Panding Orders</h3>
       <div id="pend" class="p-3">
@@ -66,8 +98,25 @@
       <div id="accepts" class="p-3">
         You Dont Have Any Accepted Orders
       </div>
-    </div>
+=======
 
+  <h1 class="mt-5">Rustuarant</h1>
+  <div class="tab mt-2">
+    <button id="pendBtn" class="tablinks" onclick="openCity(event, 'London')">Pending</button>
+    <button id="aceptBtn" class="tablinks" onclick="openCity(event, 'Paris')">Accepted</button>
+    <button id="delevBtn" class="tablinks" onclick="openCity(event, 'Tokyo')">Deleaverd</button>
+    <button type="button" class="btn btn-dark bg-dark float-end" data-bs-toggle="modal" data-bs-target="#modelId">Add Product</button>
+  </div>
+
+  <div id="London" class="tabcontent p-3">
+    <h3>Panding Orders</h3>
+    <div id = "pend" class="p-3">
+ 
+>>>>>>> parent of 6cb12c8... Updated Header and Footer
+    </div>
+  </div>
+
+<<<<<<< HEAD
     <div id="Tokyo" class="tabcontent">
       <h3>Dilivered Orders</h3>
       <div id="dilivers" class="p-3">
@@ -79,53 +128,69 @@
       <div id="dishes" class="p-3">
         You Dont Have Any Accepted Orders
       </div>
+=======
+  <div id="Paris" class="tabcontent">
+    <h3>Accepted Orders</h3>
+    <div id = "accepts" class="p-3">
+ 
     </div>
   </div>
 
+  <div id="Tokyo" class="tabcontent">
+    <h3>Dilivered Orders</h3>
+    <div id = "dilivers" class="p-3">
+ 
+>>>>>>> parent of 6cb12c8... Updated Header and Footer
+    </div>
+  </div>
+</div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Add Product</h5>
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Product</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label for="" class=" bg-dark d-block h-50 white p-2 mb-0 rounded">Food Name</label>
+        <input type="name" class=" form-control  mt-1 myInput" placeholder="Enter Your Food Name" id="foodName">
+        <label for="" class=" bg-dark d-block h-50 white mt-2 p-2 mb-0 rounded">Food Price</label>
+        <input type="number" class=" form-control  mt-1 myInput" placeholder="Inter Food Price" id="foodPrice">
+        <div>
+          <h4 class="mt-3 mb-0">Chose Food Type</h4>
+        <select id="foodCatagory" class="model mt-2 bg-dark"> 
+          <option value="Desi">Desi</option>
+          <option value="French">French</option>
+          <option value="American">American</option>
+          <option value="Lahore Food">Lahore Food</option>
+          <option value="Karachi Food">Karachi Food</option>
+          <option value="Islamabadi Food">Islamabadi Food</option>
+        </select>
         </div>
-        <div class="modal-body">
-          <label for="" class=" bg-dark d-block h-50 white p-2 mb-0 rounded">Food Name</label>
-          <input type="name" class=" form-control  mt-1 myInput" placeholder="Enter Your Food Name" id="foodName">
-          <label for="" class=" bg-dark d-block h-50 white mt-2 p-2 mb-0 rounded">Food Price</label>
-          <input type="number" class=" form-control  mt-1 myInput" placeholder="Inter Food Price" id="foodPrice">
-          <div>
-            <h4 class="mt-3 mb-0">Chose Food Type</h4>
-            <select id="foodCatagory" class="model mt-2 bg-dark">
-              <option value="Desi">Desi</option>
-              <option value="French">French</option>
-              <option value="American">American</option>
-              <option value="Lahore Food">Lahore Food</option>
-              <option value="Karachi Food">Karachi Food</option>
-              <option value="Islamabadi Food">Islamabadi Food</option>
-            </select>
-          </div>
-          <h4 class="mt-3 mb-0">Chose Delevery Type</h4>
-          <select id="DeleveryType" class="model mt-2 bg-dark">
-            <option value="Free">Free</option>
-            <option value="Paid">Paid</option>
-          </select>
-          <input type="file" class="mt-2" name="" id="foodImage">
-        </div>
-        <div class="modal-footer">
-          <button id="close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button onclick="saveProduct()" type="button" class="btn btn-dark">Save</button>
-        </div>
+        <h4 class="mt-3 mb-0">Chose Delevery Type</h4>
+        <select id="DeleveryType" class="model mt-2 bg-dark">
+          <option value="Free">Free</option>
+          <option value="Paid">Paid</option>
+        </select>
+       <input  type="file" class="mt-2" name="" id="foodImage">
+      </div>
+      <div class="modal-footer">
+        <button id= "close" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button onclick="saveProduct()" type="button" class="btn btn-dark">Save</button>
       </div>
     </div>
   </div>
+<<<<<<< HEAD
   <div class="container-fluid">  
     <footer>
     <p>Countryies:pakistan, China and Americs</p>
     <p class=""><i class="fas fa-copyright"></i>Malik Umair Khalid</p>
   </footer>
+=======
+>>>>>>> parent of 6cb12c8... Updated Header and Footer
 </div>
 
 <!-- Button trigger modal -->
@@ -218,8 +283,8 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
     crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="dashboard.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="Javascripts/dashboard.js"></script>
 </body>
 
 </html>

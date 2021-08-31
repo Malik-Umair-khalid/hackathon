@@ -4,6 +4,7 @@
     font-family: 'Poppins', sans-serif;
 
 }
+<<<<<<< HEAD
 .header{
     position: fixed !important;
     top: 0px;
@@ -26,6 +27,8 @@ footer{
 .margin{
     margin-top: 100px !important;
 }
+=======
+>>>>>>> parent of 6cb12c8... Updated Header and Footer
 .main-list{
     margin-left: 40px;
     text-transform: uppercase;
